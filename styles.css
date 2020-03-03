@@ -1,0 +1,42 @@
+#inputButtons{
+  display:flex;
+  flex-direction:column;
+}
+
+.row {
+  display:flex;
+  justify-content: center;
+}
+
+h3 {
+  padding: 50px;
+  margin: 10px;
+  background-color: lightgrey;
+  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 50px;
+  color: white;
+}
+
+h3:hover {
+  background-color: grey;
+  cursor: pointer;
+  transform: scale(1.04);
+}
+
+
+
+#screen{
+  width: 45%;
+  height: 100px;
+  margin: 0 27%;
+  padding: 10px;
+  font-size: 100px;
+  display:flex;
+  background-color: grey;
+  border-radius: 20px;
+  color:white;
+}
