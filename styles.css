@@ -2,10 +2,17 @@
   display:flex;
   flex-direction:column;
 }
-
+html{
+  background-color: #888;
+}
 .row {
   display:flex;
   justify-content: center;
+}
+
+#header{
+  display: flex;
+  justify-content: left;
 }
 
 h3 {
@@ -14,29 +21,68 @@ h3 {
   background-color: lightgrey;
   border-radius: 20px;
   width: 50px;
-  height: 50px;
+  height: 10px;
   text-align: center;
   vertical-align: middle;
-  font-size: 50px;
+  font-size:20px;
   color: white;
+  box-shadow: 5px 5px 5px #333;
 }
 
 h3:hover {
-  background-color: grey;
+  background-color: #b5b5b5;
   cursor: pointer;
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
-
-
-#screen{
-  width: 45%;
+#screenHolder{
+  position: relative;
+  width: 90%;
   height: 100px;
-  margin: 0 27%;
+  margin: 0 3.5%;
   padding: 10px;
   font-size: 100px;
   display:flex;
-  background-color: grey;
+  background-color: #999;
   border-radius: 20px;
   color:white;
+  box-shadow: 5px 5px 5px #333;
 }
+
+#equals{
+  background-color: lightsalmon;
+}
+#equals:hover{
+  background-color:#e68a65 ;
+}
+
+#equation {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 16px;
+}
+
+#calculator{
+  background-color: #555;
+  width: 50%;
+  margin: 30px 25%;
+  padding: 20px;
+  box-shadow: 10px 10px 10px #111;
+  border-radius: 20px;
+}
+
+#clear {
+  padding: 0 20px;
+  background-color: #cf6363;
+  color:white;
+  box-shadow: 5px 5px 5px #222;
+  transform: scale(1.02);
+  border-radius: 10px;
+}
+
+#clear:hover {
+  cursor: pointer;
+  background-color: #9e3f3f;
+}
+

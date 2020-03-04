@@ -3,6 +3,7 @@ var numb2 = 0
 var solution = 0
 var operator = ""
 var inputAccumulator = ""
+var currentEquation = ""
 
 function getNumberInput(number){
   inputAccumulator += `${number}`
@@ -18,9 +19,9 @@ function turnNumberToFloat(numb){
 }
 
 function doEquation(operator, numb1, numb2){
-  if(operator == "add"){solution = numb1 + numb2}
-  else if(operator == "subtract"){solution = numb1 - numb2}
-  else if(operator == "multiply"){solution = numb1 * numb2}
+  if(operator == "+"){solution = numb1 + numb2}
+  else if(operator == "-"){solution = numb1 - numb2}
+  else if(operator == "*"){solution = numb1 * numb2}
   else {solution = numb1/numb2}
 }
 
@@ -29,6 +30,8 @@ function clearMath(){
   numb2 = 0
   solution = 0
   operator = ""
+  currentEquation = ""
+  inputAccumulator = ""
 }
 
 var btn1 = document.getElementById('1')
@@ -48,6 +51,8 @@ var btnDivision = document.getElementById("division")
 var btnEquals = document.getElementById("equals")
 var btnPeriod = document.getElementById("period")
 var screen = document.getElementById("screen")
+var equationList = document.getElementById("equation")
+var clearBtn = document.getElementById("clear")
 
 
 btn1.addEventListener("click", function(){listNumberOnScreen("1")});
@@ -60,29 +65,47 @@ btn7.addEventListener("click", function(){listNumberOnScreen("7")});
 btn8.addEventListener("click", function(){listNumberOnScreen("8")});
 btn9.addEventListener("click", function(){listNumberOnScreen("9")});
 btn0.addEventListener("click", function(){listNumberOnScreen("0")});
-btnPlus.addEventListener("click", function(){operatorClicked("add")});
-btnMinus.addEventListener("click",function(){operatorClicked("subtract")});
-btnDivision.addEventListener("click",function(){operatorClicked("divide")});
-btnEquals.addEventListener("click",function(){operatorClicked("equal")});
+btnPlus.addEventListener("click", function(){operatorClicked("+")});
+btnMinus.addEventListener("click",function(){operatorClicked("-")});
+btnDivision.addEventListener("click",function(){operatorClicked("/")});
+btnEquals.addEventListener("click",function(){operatorClicked("=")});
 btnPeriod.addEventListener("click",function(){listNumberOnScreen(".")});
-btnTimes.addEventListener("click",function(){operatorClicked("multiply")});
+btnTimes.addEventListener("click",function(){operatorClicked("*")});
+clearBtn.addEventListener("click", clearCalc)
 
 
 function listNumberOnScreen(char){
   inputAccumulator += char
+  currentEquation += char
   screen.innerHTML = `${inputAccumulator}`
+  equationList.innerHTML = `${currentEquation}`
 }
 
 function operatorClicked(sign){
-  if(numb1 == 0){
-    turnNumberToFloat("numb1")
+  if(inputAccumulator == ""){
+    alert("you need to have a number")
     screen.innerHTML = ""
-    operator += sign 
   }
-  else if(! numb1 == 0){
-    turnNumberToFloat("2")
-    doEquation(operator,numb1, numb2)
-    screen.innerHTML = `=${solution.toFixed(4)}`
-    clearMath()
-  }
+  else{
+    if(numb1 == 0){
+      turnNumberToFloat("numb1")
+      currentEquation += sign
+      equationList.innerHTML = `${currentEquation}`
+      screen.innerHTML = ""
+      operator += sign 
+    }
+    else if(! numb1 == 0 && sign == "="){
+      turnNumberToFloat("2")
+      if(numb2 > 0){
+        doEquation(operator,numb1, numb2)
+        screen.innerHTML = `=${solution.toFixed(4)}`
+        clearMath()
+      }
+      else{screen.innerHTML = ""; alert("cant divide by zero, type in a different number or press clear!")}
+  }}
+}
+function clearCalc(){
+  clearMath()
+  screen.innerHTML = ""
+  equationList.innerHTML = ""
 }
